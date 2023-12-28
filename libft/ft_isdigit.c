@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:55 by tbalci           ###   ########.fr       */
+/*   Created: 2023/07/08 01:36:13 by tbalci            #+#    #+#             */
+/*   Updated: 2023/07/08 02:05:45 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int ac, char **av, char **env)
+int	ft_isdigit(int c)
 {
-    char *read_line;
-	
-	t_lexer *l_l;
-	lst = malloc(sizeof(t_lexer));
-	
-	lst->command = "yokedici";
-	printf("--%s\n",lst->command);
-    while (1)
-    {
-        read_line = readline("minimini-->");
-    }
-    return 0;
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

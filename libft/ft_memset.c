@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:55 by tbalci           ###   ########.fr       */
+/*   Created: 2023/07/07 21:40:32 by tbalci            #+#    #+#             */
+/*   Updated: 2023/07/07 23:34:58 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int ac, char **av, char **env)
+void	*ft_memset(void *b, int c, size_t len)
 {
-    char *read_line;
-	
-	t_lexer *l_l;
-	lst = malloc(sizeof(t_lexer));
-	
-	lst->command = "yokedici";
-	printf("--%s\n",lst->command);
-    while (1)
-    {
-        read_line = readline("minimini-->");
-    }
-    return 0;
+	char	*p;
+	size_t	i;
+
+	i = 0;
+	p = (char *)b;
+	while (i < len)
+	{
+		p[i] = c;
+		i++;
+	}
+	return (b);
 }

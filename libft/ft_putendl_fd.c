@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:55 by tbalci           ###   ########.fr       */
+/*   Created: 2023/07/14 17:40:28 by tbalci            #+#    #+#             */
+/*   Updated: 2023/07/14 18:08:21 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int ac, char **av, char **env)
+void	ft_putendl_fd(char *s, int fd)
 {
-    char *read_line;
-	
-	t_lexer *l_l;
-	lst = malloc(sizeof(t_lexer));
-	
-	lst->command = "yokedici";
-	printf("--%s\n",lst->command);
-    while (1)
-    {
-        read_line = readline("minimini-->");
-    }
-    return 0;
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
 }

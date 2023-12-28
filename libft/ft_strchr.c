@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:55 by tbalci           ###   ########.fr       */
+/*   Created: 2023/07/09 12:52:36 by tbalci            #+#    #+#             */
+/*   Updated: 2023/07/09 13:07:57 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int ac, char **av, char **env)
+char	*ft_strchr(const char *s, int c)
 {
-    char *read_line;
-	
-	t_lexer *l_l;
-	lst = malloc(sizeof(t_lexer));
-	
-	lst->command = "yokedici";
-	printf("--%s\n",lst->command);
-    while (1)
-    {
-        read_line = readline("minimini-->");
-    }
-    return 0;
+	int	i;
+	int	len_s;
+
+	len_s = ft_strlen(s);
+	i = 0;
+	while ((*s + i) <= (*s + len_s))
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (NULL);
 }

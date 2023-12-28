@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:55 by tbalci           ###   ########.fr       */
+/*   Created: 2023/07/07 23:47:50 by tbalci            #+#    #+#             */
+/*   Updated: 2023/07/08 02:05:49 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int ac, char **av, char **env)
+int	ft_isalpha(int c)
 {
-    char *read_line;
-	
-	t_lexer *l_l;
-	lst = malloc(sizeof(t_lexer));
-	
-	lst->command = "yokedici";
-	printf("--%s\n",lst->command);
-    while (1)
-    {
-        read_line = readline("minimini-->");
-    }
-    return 0;
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }

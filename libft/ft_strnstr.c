@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:55 by tbalci           ###   ########.fr       */
+/*   Created: 2023/07/08 20:14:11 by tbalci            #+#    #+#             */
+/*   Updated: 2023/07/08 20:38:41 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int ac, char **av, char **env)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-    char *read_line;
-	
-	t_lexer *l_l;
-	lst = malloc(sizeof(t_lexer));
-	
-	lst->command = "yokedici";
-	printf("--%s\n",lst->command);
-    while (1)
-    {
-        read_line = readline("minimini-->");
-    }
-    return 0;
+	size_t	i;
+	size_t	j;
+
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	i = 0;
+	j = 0;
+	while (haystack[i] != '\0')
+	{
+		j = 0;
+		while ((i + j) < len && haystack[i + j] == needle[j])
+		{
+			if (needle[j + 1] == '\0')
+				return ((char *) &haystack[i]);
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }

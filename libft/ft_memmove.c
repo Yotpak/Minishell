@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2023/12/15 21:01:55 by tbalci           ###   ########.fr       */
+/*   Created: 2023/07/08 02:21:57 by tbalci            #+#    #+#             */
+/*   Updated: 2023/07/08 02:53:18 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int ac, char **av, char **env)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-    char *read_line;
-	
-	t_lexer *l_l;
-	lst = malloc(sizeof(t_lexer));
-	
-	lst->command = "yokedici";
-	printf("--%s\n",lst->command);
-    while (1)
-    {
-        read_line = readline("minimini-->");
-    }
-    return 0;
+	char	*s;
+	char	*str;
+	size_t	i;
+
+	i = 1;
+	s = (char *)dst;
+	str = (char *)src;
+	if (!dst && !src)
+		return (NULL);
+	if (str < s)
+	{
+		while (i <= len)
+		{
+			s[len - i] = str[len - i];
+			i++;
+		}
+	}
+	else
+		return (ft_memcpy(dst, src, len));
+	return (dst);
 }
