@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 20:29:49 by tbalci            #+#    #+#             */
-/*   Updated: 2024/01/31 22:33:15 by tbalci           ###   ########.fr       */
+/*   Created: 2024/01/15 14:05:05 by tbalci            #+#    #+#             */
+/*   Updated: 2024/01/31 22:32:36 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// t_lexer	*ft_lstnew(void *content)
+// void	ft_parser(t_lexer *lst, char *read_line)
 // {
-// 	t_lexer	*lst;
 
-// 	lst = malloc(sizeof(t_lexer));
-// 	if (!lst)
-// 		return (NULL);
-// 	lst->command = content;
-// 	lst->next = NULL;
-// 	return (lst);
 // }
-

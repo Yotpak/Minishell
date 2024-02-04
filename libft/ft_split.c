@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 05:50:55 by tbalci            #+#    #+#             */
-/*   Updated: 2023/07/19 20:45:40 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/01 10:00:00 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	word_number = word_counter(s, c);
 	str = (char **)malloc(sizeof(char *) * (word_number + 1));
-	if (!str)
-		return (NULL);
 	while (i < word_number)
 	{
 		s = s + pass_char(s, c, 1);
