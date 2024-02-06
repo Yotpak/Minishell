@@ -52,6 +52,7 @@ void	ft_echo(t_lexer *lst, char **commands) // tokenize bir biçimde geldiği va
 
 	lst->echoflag = 0;
 	(void)lst;
+	
 	i = 1;
 	while (commands[i] && fn_echo(lst, commands[i]))
 		i++;

@@ -13,12 +13,25 @@
 #include "minishell.h"
 #include <stdio.h>
 
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
 void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 {
 	char **split;
 	(void)env;
 	split = ft_split(read_line, ' ');
-	if ((ft_strcmp(split[0], "echo") == 0)) // strcmp qullan.<<
+	if ((ft_strcmp(split[0], "echo") == 0))
 		ft_echo(lst, split);
 	// else if (split[0] == "cd")
 	// 	ft_cd(split);
@@ -28,12 +41,13 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 	// 	ft_export(split);
 	// else if (split[0] == "unset")
 	// 	ft_unset(split);
-	// else if (split[0] == "env")
-	// 	ft_env(split);x
+	else if ((ft_strcmp(split[0], "env")) == 0
+		ft_env(split);
 	else if ((ft_strcmp(split[0], "exit")) == 0)
 		ft_exit(lst, split);
 	// else
 	// 	ft_execve(split);
+	free_split(split);
 }
 
 int main(int ac, char **av, char **env)
@@ -49,6 +63,7 @@ int main(int ac, char **av, char **env)
         read_line = readline("minimini-->");
 		ft_deneme(lst, read_line, env);
 		add_history(read_line);
+		free(read_line);
     }
     return 0;
 }
