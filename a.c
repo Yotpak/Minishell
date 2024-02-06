@@ -2,7 +2,7 @@
 #include <termios.h>
 #include <stdio.h>
 
-int	dp_wc(char **s)
+int	dp_nl(char **s)
 {
 	int	word_number;
 	int	i;
@@ -14,16 +14,16 @@ int	dp_wc(char **s)
 	while (s[i])
 	{
 		j = 0;
-		while (s[i][j] != '\0' && s[i][j] == '=')
+		while (s[i][j] != '\0' && s[i][j] == '\n')
 		{
 			j++;
 		}
 		while (s[i][j])
 		{
-			while (s[i][j] != '\0' && s[i][j] != '=')
+			while (s[i][j] != '\0' && s[i][j] != '\n')
 				j++;
 			word_number++;
-			while (s[i][j] != '\0' && s[i][j] == '=')
+			while (s[i][j] != '\0' && s[i][j] == '\n')
 				j++;
 		}
 		i++;

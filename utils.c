@@ -61,3 +61,32 @@ int	dp_wc(char **s)
 	}
 	return (word_number);
 }
+
+int	dp_nl(char **s)
+{
+	int	word_number;
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	word_number = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j] != '\0' && s[i][j] == '\n')
+		{
+			j++;
+		}
+		while (s[i][j])
+		{
+			while (s[i][j] != '\0' && s[i][j] != '\n')
+				j++;
+			word_number++;
+			while (s[i][j] != '\0' && s[i][j] == '\n')
+				j++;
+		}
+		i++;
+	}
+	return (word_number);
+}

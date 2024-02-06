@@ -41,8 +41,8 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 	// 	ft_export(split);
 	// else if (split[0] == "unset")
 	// 	ft_unset(split);
-	else if ((ft_strcmp(split[0], "env")) == 0
-		ft_env(split);
+	else if ((ft_strcmp(split[0], "env")) == 0)
+		ft_env(lst, env);
 	else if ((ft_strcmp(split[0], "exit")) == 0)
 		ft_exit(lst, split);
 	// else

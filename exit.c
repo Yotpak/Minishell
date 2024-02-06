@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 int	ft_nonnumeric(char *s)
 {
 	int	i;
@@ -71,13 +70,9 @@ void	ft_exit(t_lexer *lst, char **commands)
 		lst->exitflag = 1;
 		lst->exitcode = ft_exitcontrol(lst, commands);
 		if (lst->exitflag == 0)
-		{
 			exit(lst->exitcode);
-		}
 		else
-		{
 			return ;
-		}
 	}
 	else
 	{
