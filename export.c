@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 18:21:25 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/20 19:17:04 by tbalci           ###   ########.fr       */
+/*   Created: 2024/02/13 17:04:32 by tbalci            #+#    #+#             */
+/*   Updated: 2024/02/20 19:32:13 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	takenv(t_lexer *lst, char **env)
-// {
-// 	int	i;
+void	exportinit(t_lexer *lst, char **env)
+{
+	int	i;
+	int	j;
+ 	t_env *tmp;
 
-// 	i = 0;
-// 	lst->s_env.cmd = malloc(sizeof(char *) * dp_nl(env));
-// 	while (env[i])
-// 	{
-// 		lst->s_env.cmd[i] = ft_strdup(env[i]);
-// 		i++;
-// 	}
-// }
+	j = dp_wc(env);
+	i = 0;
+	while (lst->s_env && j > i)
+	{
+		ft_llstadd_back(&(lst->s_env), ft_llstnew(ft_strdup(env[i])));
+		i++;
+	}
+	i = 0;
+	tmp = lst->s_env;
+	while (tmp && j > i)
+	{
+		printf("%s\n",tmp->cmd);
+		if (tmp->next != NULL)
+			tmp = tmp->next;
+		i++;
+	}
+}
 
-// void	ft_env(t_lexer *lst, char **env)
-// {
-// 	takenv(lst, env);
-// 	int	i;
+void	ft_export(t_lexer *lst, char **env)
+{
+	exportinit(lst, env);
+}
 
-// 	i = 0;
-// 	while (lst->s_env.cmd[i])
-// 	{
-// 		printf("%s\n", lst->s_env.cmd[i]);
-// 		i++;
-// 	}
-// }

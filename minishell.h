@@ -6,19 +6,19 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:21 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/05 19:06:03 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/20 19:33:38 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stdio.h>//silinecek
-#include <stdlib.h> // lstaddback new 
-#include <unistd.h>
-#include "./libft/libft.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <stdio.h>
+# include <stdlib.h> 
+# include <unistd.h>
+# include "./libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
 // echo with option -n
 // ◦ cd with only a relative or absolute path
@@ -29,12 +29,13 @@
 
 typedef struct s_env
 {
-	char	**cmd;
+	char			*cmd;
+	struct s_env	*next;
 }				t_env;
 
-typedef struct s_lexer	
+typedef struct s_lexer
 {
-	t_env	 s_env;
+	t_env	*s_env;
 	int		echoflag;
 	int		exitcode;
 	int		exitflag;
@@ -44,17 +45,20 @@ typedef struct s_lexer
 void	ft_echo(t_lexer *lst, char **commands);
 int		fn_echo(t_lexer *lst, char *command);
 void	ft_pwd(t_lexer *lst);
-void	envprint(t_lexer *lst);
+void	takenv(t_lexer *lst, char **env);
 void	ft_env(t_lexer *lst, char **env);
 void	ft_exit(t_lexer *lst, char **commands);
 void	ft_deneme(t_lexer *lst, char *read_line, char **env);
 void	ft_echo_print(t_lexer *lst, char **commands);
+void	exportinit(t_lexer *lst, char **env);   
+void	ft_export(t_lexer *lst, char **env);
 
 //utils
 
 int		ft_strcmp(char *s1, char *s2);
 int		dp_nl(char **s);
 int		dp_wc(char **s);
-
-
+t_env *ft_llstnew(char *cmd);
+void	ft_llstadd_back(t_env **lst, t_env *new);
+t_env	*ft_llstlast(t_env *lst);
 #endif

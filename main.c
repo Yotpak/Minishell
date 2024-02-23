@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/05 19:34:59 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/20 19:18:26 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,20 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 	char **split;
 	(void)env;
 	split = ft_split(read_line, ' ');
+	if (split[0] == NULL)
+		return ;
 	if ((ft_strcmp(split[0], "echo") == 0))
 		ft_echo(lst, split);
 	// else if (split[0] == "cd")
 	// 	ft_cd(split);
 	else if ((ft_strcmp(split[0], "pwd")) == 0)
 		ft_pwd(lst);
-	// else if (split[0] == "export")
-	// 	ft_export(split);
+	else if ((ft_strcmp(split[0], "export")) == 0)
+		ft_export(lst, env);
 	// else if (split[0] == "unset")
 	// 	ft_unset(split);
-	else if ((ft_strcmp(split[0], "env")) == 0)
-		ft_env(lst, env);
+	// else if ((ft_strcmp(split[0], "env")) == 0)
+	// 	ft_env(lst, env);
 	else if ((ft_strcmp(split[0], "exit")) == 0)
 		ft_exit(lst, split);
 	// else

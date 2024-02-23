@@ -1,7 +1,7 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
-SRC = echo.c main.c parser.c utils.c pwd.c exit.c env.c
+SRC = echo.c main.c parser.c utils.c pwd.c exit.c env.c export.c
 OBJ = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 
