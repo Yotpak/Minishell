@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:31:50 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/24 17:36:38 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/24 18:45:57 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,13 @@ void	ft_export(t_lexer *lst, char **env)
 {
 	t_env *list;
 	t_env *tmp;
-	t_env *tmp2;
 	int	i;
 
 	i = 1;
-	list = malloc(sizeof(t_env));
-	if (!list)
-		return ;
-	list->cmd = ft_strdup(env[0]);
-	list->next = NULL;
+	list = list_exnew(ft_strdup(env[0]));
 	while (lst->envline > i)
 	{
-		tmp2 = list_exnew(ft_strdup(env[i]));
-		list_exadd_back(&list, tmp2);
+		list_exadd_back(&list, list_exnew(ft_strdup(env[i])));
 		i++;
 	}
 	i = 0;

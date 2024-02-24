@@ -11,7 +11,7 @@ $(LIBFT):
 	make -C libft
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) -lreadline -fsanitize=address -g
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) -lreadline -fsanitize=address 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
