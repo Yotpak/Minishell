@@ -130,3 +130,44 @@ t_env	*list_exlast(t_env *lst)
 	}
 	return (lst);
 }
+
+t_env *ft_kirkayak(char **split, t_lexer *lst) //export toprak= toprak'i ele alarak düzenlemeye çalışıyorum 
+{
+	t_env	*extralist;
+	int	i;
+	char	**str;
+
+	i = 0;
+	while (split[i])
+	{
+		if(split[i] == '=')
+			str = ft_split(split, '=');// spliti = e göre ayırırsak toprak="" olmuyor tikaq
+		i++;
+	}
+	i = 1;
+	extralist = list_exnew(str[0]);
+	lst->extraline = dp_wc(str);
+	while (lst->extraline > i)
+	{
+		list_exadd_back(&extralist, list_exnew(ft_strdup(str[i])));
+		i++;
+	}
+	sort_export(extralist);
+	return (extralist);
+}
+
+t_env *ft_exportcontrol(char **split, t_lexer *lst)
+{
+	t_env *extralist;
+	int	i;
+
+	i = 1;
+	while (split[i]) // ilk non alpha kontrolü 
+	{
+		if (ft_isalpha(split[i][0]) == 0)
+			printf("bash: export: `%c': not a valid identifier\n",split[i][j]);
+		i++;
+	}
+	extralist = ft_kirkayak(split, lst);
+	return (extralist);
+}

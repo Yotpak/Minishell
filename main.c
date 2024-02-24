@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/24 17:03:11 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/24 23:01:39 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 	else if ((ft_strcmp(split[0], "pwd")) == 0)
 		ft_pwd(lst);
 	else if ((ft_strcmp(split[0], "export")) == 0)
-		ft_export(lst, env);
+			ft_export(lst, env, split);
 	// else if (split[0] == "unset")
 	// 	ft_unset(split);
 	// else if ((ft_strcmp(split[0], "env")) == 0)

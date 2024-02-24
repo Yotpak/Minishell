@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:21 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/24 17:31:47 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/25 00:53:50 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_lexer
 	int		exitcode;
 	int		exitflag;
 	int		envline;
+	int		extraflag; // for export extras
+	int		extraline; // ''    ''     ''
 }				t_lexer;
 
 // t_lexer	*ft_lstnew(void *content);
@@ -51,7 +53,7 @@ void	ft_env(t_lexer *lst, char **env);
 void	ft_exit(t_lexer *lst, char **commands);
 void	ft_deneme(t_lexer *lst, char *read_line, char **env);
 void	ft_echo_print(t_lexer *lst, char **commands);
-void	ft_export(t_lexer *lst, char **env);
+void	ft_export(t_lexer *lst, char **env, char **split);
 void	sort_export(t_env *list);
 
 void	ft_init(t_lexer *lst, char **env);
@@ -61,8 +63,10 @@ void	ft_init(t_lexer *lst, char **env);
 int		ft_strcmp(char *s1, char *s2);
 int		dp_nl(char **s);
 int		dp_wc(char **s);
-t_env	*list_exnew(char *content);
 void	list_exadd_back(t_env **lst, t_env *new);
+t_env	*list_exnew(char *content);
 t_env	*list_exlast(t_env *lst);
+t_env	*ft_exportcontrol(char **split, t_lexer *lst);
+t_env	*ft_kirkayak(char *split, t_lexer *lst);
 
 #endif
