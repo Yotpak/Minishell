@@ -6,12 +6,17 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/20 19:18:26 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/24 17:03:11 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
+
+void	ft_init(t_lexer *lst, char **env)
+{
+	lst->envline = dp_nl(env);
+}
 
 void	free_split(char **split)
 {
@@ -30,6 +35,7 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 {
 	char **split;
 	(void)env;
+	ft_init(lst, env);
 	split = ft_split(read_line, ' ');
 	if (split[0] == NULL)
 		return ;

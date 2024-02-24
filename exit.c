@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:44:40 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/13 17:13:36 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/24 17:17:28 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ void	ft_exit(t_lexer *lst, char **commands)
 		lst->exitflag = 1;
 		lst->exitcode = ft_exitcontrol(lst, commands);
 		if (lst->exitflag == 0)
+		{
+			system("leaks minishell");
 			exit(lst->exitcode);
+		}
 		else
 			return ;
 	}

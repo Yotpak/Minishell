@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,7 +7,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 20:29:49 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/20 19:38:00 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/02/23 19:36:47 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +25,16 @@
 // 	return (lst);
 // }
 
-int ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while((s1[i] == s2[i]) && s1[i] && s2[i])
+	if (!s1 || !s2)
+		return (1);
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
-	return (s1[i]-s2[i]);
+	return (s1[i] - s2[i]);
 }
 
 int	dp_wc(char **s)
@@ -47,7 +50,9 @@ int	dp_wc(char **s)
 	{
 		j = 0;
 		while (s[i][j] != '\0' && s[i][j] == ' ')
+		{
 			j++;
+		}
 		while (s[i][j])
 		{
 			while (s[i][j] != '\0' && s[i][j] != ' ')
@@ -74,7 +79,9 @@ int	dp_nl(char **s)
 	{
 		j = 0;
 		while (s[i][j] != '\0' && s[i][j] == '\n')
+		{
 			j++;
+		}
 		while (s[i][j])
 		{
 			while (s[i][j] != '\0' && s[i][j] != '\n')
@@ -87,77 +94,39 @@ int	dp_nl(char **s)
 	}
 	return (word_number);
 }
-t_env *ft_llstnew(char *cmd)
-{
-	t_env *new_node;
 
-	new_node = malloc(sizeof(t_env));
-	if (!new_node)
-		return NULL;
-	new_node->cmd = cmd;
-	new_node->next = NULL;
-	return new_node;
+t_env	*list_exnew(char *content)
+{
+	t_env	*lst;
+
+	lst = malloc(sizeof(t_env));
+	if (!lst)
+		return (NULL);
+	lst->cmd = content;
+	lst->next = NULL;
+	return (lst);
 }
 
-// t_env	*sort_list(t_env *lst, int (*cmp)(int, int)) //strcmp
-// {
-// 	int	swap;
-// 	t_env	*tmp;
-
-// 	tmp = lst;
-// 	while(lst->next != NULL)
-// 	{
-// 		if (((*cmp)(lst->data, lst->next->data)) == 0)
-// 		{
-// 			swap = lst->data;
-// 			lst->data = lst->next->data;
-// 			lst->next->data = swap;
-// 			lst = tmp;
-// 		}
-// 		else
-// 			lst = lst->next;
-// 	}
-// 	lst = tmp;
-// 	return (lst);
-// }
-
-void ft_llstadd_back(t_env **lst, t_env *new)
+void	list_exadd_back(t_env **lst, t_env *new)
 {
-	t_env *last;
+	t_env	*tmp;
 
-	if (lst)
-	{
-		if (*lst)
-		{
-			if(lst)
-				last = ft_llstlast(*lst);
-			if (last != NULL)
-			{
-				last->next = new;
-			}
-			else
-			{
-				printf("ansjkdlm\n");
-				exit(0);
-			}
-		}
-		else
-			*lst = new;
-	}
+	tmp = list_exlast(*lst);
+	if (!tmp)
+		*lst = new;
+	else
+		tmp->next = new;
 }
 
-t_env	*ft_llstlast(t_env *lst)
+
+t_env	*list_exlast(t_env *lst)
 {
 	while (lst != NULL)
 	{
 		if (lst->next == NULL)
 			return (lst);
 		else
-			lst = lst->next;
+				lst = lst->next;
 	}
 	return (lst);
 }
-
-
-
-
