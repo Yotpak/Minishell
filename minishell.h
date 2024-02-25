@@ -27,6 +27,12 @@
 // ◦ env with no options or arguments
 // ◦ exit with no options
 
+typedef struct s_extra
+{
+	char			*cmd;
+	struct s_extra	*next;
+}				t_extra;
+
 typedef struct s_env
 {
 	char			*cmd;
@@ -36,6 +42,7 @@ typedef struct s_env
 typedef struct s_lexer
 {
 	t_env	s_env;
+	t_extra	s_extra;
 	int		echoflag;
 	int		exitcode;
 	int		exitflag;
@@ -67,6 +74,6 @@ void	list_exadd_back(t_env **lst, t_env *new);
 t_env	*list_exnew(char *content);
 t_env	*list_exlast(t_env *lst);
 t_env	*ft_exportcontrol(char **split, t_lexer *lst);
-t_env	*ft_kirkayak(char *split, t_lexer *lst);
+t_env *ft_kirkayak(char **split, t_lexer *lst); //export toprak= toprak'i ele alarak düzenlemeye çalışıyorum 
 
 #endif

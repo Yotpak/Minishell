@@ -156,16 +156,40 @@ t_env *ft_kirkayak(char **split, t_lexer *lst) //export toprak= toprak'i ele ala
 	return (extralist);
 }
 
+int	ft_lagaluga(t_lexer *lst, char *split)
+{
+	t_extra	*extralist;
+
+	extralist = list_exnew()
+
+
+
+
+
+
+
+
+
+
+
+	lst->s_extra = extralist;
+
+}
+
 t_env *ft_exportcontrol(char **split, t_lexer *lst)
 {
 	t_env *extralist;
 	int	i;
 
 	i = 1;
-	while (split[i]) // ilk non alpha kontrolü 
+	while (split[i]) // toprak= toprak
 	{
 		if (ft_isalpha(split[i][0]) == 0)
 			printf("bash: export: `%c': not a valid identifier\n",split[i][j]);
+		else // toprak=
+		{
+
+		}
 		i++;
 	}
 	extralist = ft_kirkayak(split, lst);
