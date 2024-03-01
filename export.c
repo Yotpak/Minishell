@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:31:50 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/25 00:54:56 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/01 21:43:21 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sort_export(t_env *list)
 void	ft_export(t_lexer *lst, char **env, char **split)
 {
 	t_env	*list;
-	t_env	*tmp;
+	// t_env	*tmp;
 	t_env	*extralist;
 	// int	extraflag;
 	int	i;
@@ -55,27 +55,34 @@ void	ft_export(t_lexer *lst, char **env, char **split)
 		i++;
 	}
 	i = 0;
-	sort_export(list);
-	while (lst->envline > i)
+	// sort_export(list);
+	// while (lst->envline > i)
+	// {
+	// 	printf("declare -x %s\n",list->cmd);
+	// 	tmp = list;
+	// 	list = list->next;
+	// 	free(tmp->cmd);
+	// 	free(tmp);
+	// 	i++;
+	// }
+	// i = 0;
+	// if (lst->extraflag == 1)
+	// {
+	// 	printf("%d\n",lst->extraline);
+	// 	while (lst->extraline > i)
+	// 	{
+	// 		printf("kac\n");
+	// 		printf("declare -x %s\n",extralist->cmd);
+	// 		tmp = extralist;
+	// 		extralist = extralist->next;
+	// 		free(tmp->cmd);
+	// 		free(tmp);
+	// 		i++;
+	// 	}
+	// }
+	while(extralist != NULL)
 	{
-		printf("declare -x %s\n",list->cmd);
-		tmp = list;
-		list = list->next;
-		free(tmp->cmd);
-		free(tmp);
-		i++;
-	}
-	i = 0;
-	if (lst->extraflag == 1)
-	{
-		while (lst->extraline > i)
-		{
-			printf("declare -x %s\n",extralist->cmd);
-			i++;
-			tmp = extralist;
-			extralist = extralist->next;
-			free(tmp->cmd);
-			free(tmp);
-		}
+		printf("%s\n",extralist->cmd);
+		extralist = extralist->next;
 	}
 }

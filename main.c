@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/24 23:01:39 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/01 20:12:41 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int main(int ac, char **av, char **env)
     {
         read_line = readline("minimini-->");
 		ft_deneme(lst, read_line, env);
-		add_history(read_line);
+		add_history(read_line);	
 		free(read_line);
     }
     return 0;

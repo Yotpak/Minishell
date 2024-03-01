@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:21 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/25 00:53:50 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/01 21:08:44 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	list_exadd_back(t_env **lst, t_env *new);
 t_env	*list_exnew(char *content);
 t_env	*list_exlast(t_env *lst);
 t_env	*ft_exportcontrol(char **split, t_lexer *lst);
-t_env *ft_kirkayak(char **split, t_lexer *lst); //export toprak= toprak'i ele alarak düzenlemeye çalışıyorum 
+char	*ft_kirkayak(char *split, t_lexer *lst);
+char	*ft_exportdup(char *s);
 
 #endif

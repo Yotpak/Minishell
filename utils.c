@@ -118,6 +118,30 @@ void	list_exadd_back(t_env **lst, t_env *new)
 		tmp->next = new;
 }
 
+char	*ft_exportdup(char *s)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 3));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (j[s] != '\0')
+	{
+		i[str] = j[s];
+		if (j[s] == '=')
+			str[++i] = '"';
+		if (j[s + 1] == '\0')
+			str[++i] = '"';
+		i++;
+		j++;
+	}		
+	i[str] = '\0';
+	return (str);
+}
 
 t_env	*list_exlast(t_env *lst)
 {
@@ -131,67 +155,51 @@ t_env	*list_exlast(t_env *lst)
 	return (lst);
 }
 
-t_env *ft_kirkayak(char **split, t_lexer *lst) //export toprak= toprak'i ele alarak düzenlemeye çalışıyorum 
+char	*ft_kirkayak(char *split, t_lexer *lst)
 {
-	t_env	*extralist;
 	int	i;
-	char	**str;
+	int	flag;
 
 	i = 0;
+	flag = 0;
+	lst->extraline = 0;
 	while (split[i])
 	{
-		if(split[i] == '=')
-			str = ft_split(split, '=');// spliti = e göre ayırırsak toprak="" olmuyor tikaq
+		if (split[i] == '=')
+			flag = 1;
 		i++;
 	}
-	i = 1;
-	extralist = list_exnew(str[0]);
-	lst->extraline = dp_wc(str);
-	while (lst->extraline > i)
+	if (flag == 1)
 	{
-		list_exadd_back(&extralist, list_exnew(ft_strdup(str[i])));
-		i++;
+		lst->extraline++;
+		return (ft_exportdup(split));
 	}
-	sort_export(extralist);
-	return (extralist);
+	else
+	{
+		lst->extraline++;
+		return (ft_strdup(split));
+	}
 }
 
-int	ft_lagaluga(t_lexer *lst, char *split)
+t_env	*ft_exportcontrol(char **split, t_lexer *lst)
 {
-	t_extra	*extralist;
-
-	extralist = list_exnew()
-
-
-
-
-
-
-
-
-
-
-
-	lst->s_extra = extralist;
-
-}
-
-t_env *ft_exportcontrol(char **split, t_lexer *lst)
-{
+	(void)lst;
 	t_env *extralist;
 	int	i;
+	int	j;
 
-	i = 1;
-	while (split[i]) // toprak= toprak
+	j = dp_nl(split);
+	i = 2;
+	if (j > 1)
+		extralist = list_exnew(split[1]);
+	while (split[i])
 	{
-		if (ft_isalpha(split[i][0]) == 0)
-			printf("bash: export: `%c': not a valid identifier\n",split[i][j]);
-		else // toprak=
-		{
-
-		}
+		list_exadd_back(&extralist, list_exnew(ft_strdup(split[i])));
 		i++;
 	}
-	extralist = ft_kirkayak(split, lst);
+	
+	// lst->extraflag = 1;
+		// if (ft_isalpha(split[i][0]) == 0)
+			// printf("bash: export: `%c': not a valid identifier\n",split[i][0]);
 	return (extralist);
 }
