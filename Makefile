@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
-SRC = echo.c main.c parser.c utils.c pwd.c exit.c env.c export.c
+SRC = echo.c main.c parser.c utils.c pwd.c exit.c env.c export.c exportutils.c unset.c
 OBJ = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 
@@ -11,7 +11,7 @@ $(LIBFT):
 	make -C libft
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) -lreadline -fsanitize=address 
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) -lreadline -fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

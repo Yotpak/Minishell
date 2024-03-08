@@ -6,16 +6,27 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/01 20:12:41 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/08 01:07:43 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-void	ft_init(t_lexer *lst, char **env)
+void	take_env(t_lexer *lst, char **env)
 {
+	int	i;
+
+	i = 0;
 	lst->envline = dp_nl(env);
+	lst->s_env = NULL;
+	lst->s_extra = NULL;
+	lst->d_exp = malloc(sizeof(char *) * (dp_nl(env) + 1));
+	while (env[i])
+	{
+		list_exadd_back(&lst->s_extra, list_exnew(env[i]));	
+		lst->d_exp[i] = ft_exportdup(env[i]);
+		i++;
+	}
 }
 
 void	free_split(char **split)
@@ -35,22 +46,21 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 {
 	char **split;
 	(void)env;
-	ft_init(lst, env);
 	split = ft_split(read_line, ' ');
 	if (split[0] == NULL)
 		return ;
 	if ((ft_strcmp(split[0], "echo") == 0))
 		ft_echo(lst, split);
-	// else if (split[0] == "cd")
-	// 	ft_cd(split);
+	else if (ft_strcmp(split[0], "cd") == 0))
+		ft_cd(lst, split);
 	else if ((ft_strcmp(split[0], "pwd")) == 0)
 		ft_pwd(lst);
 	else if ((ft_strcmp(split[0], "export")) == 0)
-			ft_export(lst, env, split);
-	// else if (split[0] == "unset")
-	// 	ft_unset(split);
-	// else if ((ft_strcmp(split[0], "env")) == 0)
-	// 	ft_env(lst, env);
+			ft_export(lst, split);
+	else if ((ft_strcmp(split[0], "unset")) == 0)
+		ft_unset(lst, split);
+	else if ((ft_strcmp(split[0], "env")) == 0)
+		ft_env(lst);
 	else if ((ft_strcmp(split[0], "exit")) == 0)
 		ft_exit(lst, split);
 	// else
@@ -66,6 +76,8 @@ int main(int ac, char **av, char **env)
 	
 	t_lexer *lst;
 	lst = malloc(sizeof(t_lexer));
+	take_env(lst, env);
+
     while (1)
     {
         read_line = readline("minimini-->");
