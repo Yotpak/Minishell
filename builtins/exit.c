@@ -6,11 +6,13 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:44:40 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/24 18:46:47 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/09 17:05:30 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
+
 
 int	ft_nonnumeric(char *s)
 {

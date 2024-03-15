@@ -6,11 +6,12 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 03:12:10 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/07 15:18:02 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/14 13:04:59 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
 
 t_env	*list_exnew(char *content)
 {
@@ -35,7 +36,7 @@ void	list_exadd_back(t_env **lst, t_env *new)
 		tmp->next = new;
 }
 
-char	*ft_exportdup(char *s)
+char	*ft_exportdup(char *s, t_lexer *lst)
 {
 	char	*str;
 	int		i;
@@ -50,7 +51,10 @@ char	*ft_exportdup(char *s)
 	{
 		i[str] = j[s];
 		if (j[s] == '=')
-			str[++i] = '"';
+		{
+			lst->equal = j;
+			str[++i] = '"';	
+		}
 		if (j[s + 1] == '\0')
 			str[++i] = '"';
 		i++;
@@ -87,12 +91,14 @@ int	couplecontrol(t_lexer *lst, char *split)
 		{
 			if (split[i] == lst->s_env->cmd[i])
 			{
-				if (split[i] == '=' || split[i + 1])
+				if (split[i] == '=' && split[i + 1] != '\0')
 				{
 					flag = 0;
 					break ;
 				}
 			}
+			else
+				break;
 			i++; 
 		}
 		lst->s_env = lst->s_env->next;

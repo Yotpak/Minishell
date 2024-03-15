@@ -6,11 +6,13 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 15:02:00 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/04 18:11:52 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/09 17:05:36 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
+
 
 void	ft_pwd(t_lexer *lst)
 {

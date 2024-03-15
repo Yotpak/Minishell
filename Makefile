@@ -1,7 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
-SRC = echo.c main.c parser.c utils.c pwd.c exit.c env.c export.c exportutils.c unset.c
+SRC = ./builtins/echo.c ./builtins/pwd.c ./builtins/exit.c ./builtins/env.c ./builtins/export.c ./builtins/exportutils.c ./builtins/unset.c  ./builtins/cd.c \
+		main.c parser.c utils.c 
 OBJ = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 

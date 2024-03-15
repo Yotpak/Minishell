@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 01:06:29 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/08 01:07:27 by tbalci           ###   ########.fr       */
+/*   Created: 2024/02/13 18:21:25 by tbalci            #+#    #+#             */
+/*   Updated: 2024/03/15 09:30:42 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void	ft_cd(t_lexer *lst, char **split)
+void	ft_env(t_lexer *lst) // tmp'Yi kullanıp freelicek bir fonskiyon yaz
 {
-	
+	int	i;
+	t_env	*tmp;
+
+	i = 0;
+	tmp = lst->s_extra;
+	while (lst->s_extra != NULL)
+	{
+		printf("%s\n",lst->s_extra->cmd);
+		lst->s_extra = lst->s_extra->next;
+	}
+	lst->s_extra = tmp;
 }

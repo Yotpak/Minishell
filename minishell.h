@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:21 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/08 01:07:30 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/09 17:24:34 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_env
 typedef struct s_lexer
 {
 	
-	char	**d_exp;
+	char	**d_exp; // export için ayarlanmış env
 	t_env	*s_extra; //en başta env ile tanımlanıyor export a argüman gelirse exportta ekleme yapılıyor
 	t_env	*s_env; //export'un argümanla gelmiş hallerini export için tutan fonksiyon
 	int		echoflag;
@@ -45,6 +45,7 @@ typedef struct s_lexer
 	int		exitflag;
 	int		envline;
 	int		extraflag;
+	int		equal;
 }				t_lexer;
 
 void	ft_echo(t_lexer *lst, char **commands);
@@ -59,7 +60,7 @@ void	ft_cd(t_lexer *lst, char **split);
 
 //utils
 
-void unset_utils(t_env **begin_list, char *split, int (*cmp)());
+void	 unset_utils(t_lexer *lst, t_env **begin_list, char *split, int (*cmp)());
 void	ft_echo_print(t_lexer *lst, char **commands);
 int		ft_strcmp(char *s1, char *s2);
 int		dp_nl(char **s);//bunlardan birini silcem galiba
@@ -70,7 +71,7 @@ t_env	*list_exnew(char *content);
 t_env	*list_exlast(t_env *lst);
 void	ft_exportcontrol(char **split, t_lexer *lst);
 char	*dupfunc(char *split, t_lexer *lst);
-char	*ft_exportdup(char *s);
+char	*ft_exportdup(char *s, t_lexer *lst);
 int		couplecontrol(t_lexer *lst, char *split);
 
 #endif

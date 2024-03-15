@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/08 01:07:43 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/09 17:24:44 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	take_env(t_lexer *lst, char **env)
 	int	i;
 
 	i = 0;
+	lst->equal = 0;
 	lst->envline = dp_nl(env);
 	lst->s_env = NULL;
 	lst->s_extra = NULL;
@@ -24,7 +25,7 @@ void	take_env(t_lexer *lst, char **env)
 	while (env[i])
 	{
 		list_exadd_back(&lst->s_extra, list_exnew(env[i]));	
-		lst->d_exp[i] = ft_exportdup(env[i]);
+		lst->d_exp[i] = ft_exportdup(env[i], lst);
 		i++;
 	}
 }
@@ -51,7 +52,7 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 		return ;
 	if ((ft_strcmp(split[0], "echo") == 0))
 		ft_echo(lst, split);
-	else if (ft_strcmp(split[0], "cd") == 0))
+	else if (ft_strcmp(split[0], "cd") == 0)
 		ft_cd(lst, split);
 	else if ((ft_strcmp(split[0], "pwd")) == 0)
 		ft_pwd(lst);

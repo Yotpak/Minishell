@@ -6,13 +6,11 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 21:11:28 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/01 09:47:05 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/09 17:06:51 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdbool.h>
+#include "../minishell.h"
 
 int	fn_echo(t_lexer *lst, char *command)
 {
@@ -46,7 +44,7 @@ void	ft_echo_print(t_lexer *lst, char **commands)// fileno değişkeni tutulacak
 	}
 }
 
-void	ft_echo(t_lexer *lst, char **commands) // tokenize bir biçimde geldiği varsayılıyor.
+void	ft_echo(t_lexer *lst, char **commands)
 {
 	int		i;
 

@@ -6,11 +6,11 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:31:50 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/07 17:35:13 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/14 13:05:59 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*dupfunc(char *split, t_lexer *lst)
 {
@@ -28,7 +28,7 @@ char	*dupfunc(char *split, t_lexer *lst)
 	if (flag == 1)
 	{	
 		list_exadd_back(&lst->s_extra, list_exnew(ft_strdup(split)));
-		return (ft_exportdup(split));
+		return (ft_exportdup(split, lst));
 	}
 	else
 		return (ft_strdup(split));
@@ -66,12 +66,13 @@ void	print_list(t_env *list)
 	if (list == NULL)
 		return ;
 	sort_export(list);
+	tmp = list;
 	while (list != NULL)
 	{
 		printf("declare -x %s\n", list->cmd);
-		tmp = list;
 		list = list->next;
 	}
+	list = tmp;
 }
 
 void	ft_exportcontrol(char **split, t_lexer *lst)
@@ -115,7 +116,6 @@ void	ft_export(t_lexer *lst, char **split) //exportun verileri bu fonksiyondan Ã
 			i++;
 		}
 	}
-	
 	if (j > 1)
 		ft_exportcontrol(split, lst);
 	if (lst->extraflag == 1 && j == 1)
