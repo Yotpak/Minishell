@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:49:11 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/09 17:25:46 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/17 04:27:26 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void unset_utils(t_lexer *lst, t_env **begin_list, char *split, int (*cmp)())
 
 void	ft_unset(t_lexer *lst, char **split)
 {
-	(void)split;
 	int	i;
 
 	i = 1;
@@ -49,5 +48,4 @@ void	ft_unset(t_lexer *lst, char **split)
 		}
 		i++;
 	}
-
 }

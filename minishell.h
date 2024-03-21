@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:21 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/09 17:24:34 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/17 14:51:33 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 # include <readline/history.h>
 
 // ◦ cd with only a relative or absolute path
-
-typedef struct s_extra
-{
-	char			*cmd;
-	struct s_extra	*next;
-}				t_extra;
 
 typedef struct s_env
 {
@@ -74,4 +68,6 @@ char	*dupfunc(char *split, t_lexer *lst);
 char	*ft_exportdup(char *s, t_lexer *lst);
 int		couplecontrol(t_lexer *lst, char *split);
 
+char	*find_home(t_lexer *lst, char *var); // leak potansiyeli olabilir
+void	del_env_exp(t_lexer *lst, char *var);
 #endif
