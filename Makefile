@@ -1,7 +1,8 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
-SRC = echo.c main.c parser.c utils.c pwd.c
+SRC = ./builtins/echo.c ./builtins/pwd.c ./builtins/exit.c ./builtins/env.c ./builtins/export.c ./builtins/exportutils.c ./builtins/unset.c  ./builtins/cd.c \
+		main.c parser.c utils.c ./builtins/cdutils.c
 OBJ = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 
@@ -11,7 +12,7 @@ $(LIBFT):
 	make -C libft
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) -lreadline -g -fsanitize=address
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) -lreadline -fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

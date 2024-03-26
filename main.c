@@ -6,33 +6,67 @@
 /*   By: msamilog <tahasamiloglu@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/02/04 19:57:32 by msamilog         ###   ########.fr       */
+/*   Updated: 2024/03/27 00:14:31 by msamilog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
+
+void	take_env(t_lexer *lst, char **env)
+{
+	int	i;
+
+	i = 0;
+	lst->equal = 0;
+	lst->envline = dp_nl(env);
+	lst->s_env = NULL;
+	lst->s_extra = NULL;
+	lst->d_exp = malloc(sizeof(char *) * (dp_nl(env) + 1));
+	while (env[i])
+	{
+		list_exadd_back(&lst->s_extra, list_exnew(env[i]));	
+		lst->d_exp[i] = ft_exportdup(env[i], lst);
+		i++;
+	}
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
 
 void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 {
 	char **split;
+	(void)env;
 	split = ft_split(read_line, ' ');
-	if ((ft_strncmp(split[0], "echo", 4) == 0)) // strcmp qullan.<<
+	if (split[0] == NULL)
+		return ;
+	if ((ft_strcmp(split[0], "echo") == 0))
 		ft_echo(lst, split);
-	// else if (split[0] == "cd")
-	// 	ft_cd(split);
-	else if (read_line[0] == 'P' && read_line[1] == 'W' && read_line[2] == 'D')
-		ft_pwd(lst, split, env);
-	// else if (split[0] == "export")
-	// 	ft_export(split);
-	// else if (split[0] == "unset")
-	// 	ft_unset(split);
-	// else if (split[0] == "env")
-	// 	ft_env(split);x
-	// else if (split[0] == "exit")
-	// 	ft_exit(split);
+	else if (ft_strcmp(split[0], "cd") == 0)
+		ft_cd(lst, split);
+	else if ((ft_strcmp(split[0], "pwd")) == 0)
+		ft_pwd(lst);
+	else if ((ft_strcmp(split[0], "export")) == 0)
+			ft_export(lst, split);
+	else if ((ft_strcmp(split[0], "unset")) == 0)
+		ft_unset(lst, split);
+	else if ((ft_strcmp(split[0], "env")) == 0)
+		ft_env(lst);
+	else if ((ft_strcmp(split[0], "exit")) == 0)
+		ft_exit(lst, split);
 	// else
 	// 	ft_execve(split);
+	free_split(split);
 }
 
 int main(int ac, char **av, char **env)
@@ -43,13 +77,14 @@ int main(int ac, char **av, char **env)
 	
 	t_lexer *lst;
 	lst = malloc(sizeof(t_lexer));
+	take_env(lst, env);
+
     while (1)
     {
         read_line = readline("minimini-->");
 		ft_deneme(lst, read_line, env);
-		add_history(read_line);
-		if (read_line[0] == 'e' && read_line[1] == 'x')
-			break;
+		add_history(read_line);	
+		free(read_line);
     }
     return 0;
 }
