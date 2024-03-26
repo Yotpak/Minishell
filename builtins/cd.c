@@ -12,7 +12,35 @@
 
 #include "../minishell.h"
 
-void	gohome(t_lexer *lst)
+int	ft_dir(const char *filename)
+{
+	struct stat	file;
+	int			is_folder;
+
+	if (filename)
+	{
+		stat(filename, &file);
+		if (!access(filename, F_OK))
+		{
+			is_folder = S_ISREG(file.st_mode);
+			if (is_folder == 0)
+			{
+				is_folder = chdir(filename);
+				if (is_folder == 0)
+					return (0);
+				else
+					return (1);
+			}
+			else
+				return (2);
+		}
+		else
+			return (3);
+	}
+	return (4);
+}
+
+void	set_oldpwd(t_lexer *lst)
 {
 	t_env	*tmp;
 	char	*old;
@@ -26,24 +54,46 @@ void	gohome(t_lexer *lst)
 			del_env_exp(lst, "OLDPWD=");
 			list_exadd_back(&lst->s_env, list_exnew(old));
 			list_exadd_back(&lst->s_extra, list_exnew(old));
-			// add_env_exp(lst, old);
-			// oldpwd ekle
+			lst->exitcode = 0;
+			free(old);
 		}
 		tmp = tmp->next;
 	}
-	tmp = lst->s_extra;
-	while (lst->s_extra)
-	{
-		printf("tmp->cmd = %s\n",lst->s_extra->cmd);
-		lst->s_extra = lst->s_extra->next;
-	}
 }
+
+void	go_home(t_lexer *lst)
+{
+	t_env	*tmp;
+	char	*home;
+
+	tmp = lst->s_extra;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->cmd, "HOME", 4) == 0)
+		{
+			set_oldpwd(lst);
+			home = ft_strjoin("PWD=", &tmp->cmd[5]);
+			if (isdir(tmp->var))
+				return (cd_errors(lst, isdir(tmp->var), tmp->var));
+			del_env_exp(lst, "PWD=");
+			add_env_export(home, lst);
+			free(home);
+			lst->exitcode = 0;
+			return ;
+		}
+		tmp = tmp->next;
+	}
+	expander_errors("cd: HOME not set");
+	lst->exitcode = 1;
+}
+
 
 void	ft_cd(t_lexer *lst, char **split)
 {
 	(void)split;
 	// if (split[1] == NULL) //cd tek girildiyse home'a gidecek
 	// {
-		gohome(lst);
+
+		set_oldpwd(lst);
 	// }
 }

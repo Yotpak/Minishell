@@ -14,11 +14,10 @@
 
 void	ft_env(t_lexer *lst) // tmp'Yi kullanıp freelicek bir fonskiyon yaz
 {
-	int	i;
 	t_env	*tmp;
 
-	i = 0;
 	tmp = lst->s_extra;
+	sort_export(lst->s_extra);
 	while (lst->s_extra != NULL)
 	{
 		printf("%s\n",lst->s_extra->cmd);

@@ -68,6 +68,9 @@ char	*dupfunc(char *split, t_lexer *lst);
 char	*ft_exportdup(char *s, t_lexer *lst);
 int		couplecontrol(t_lexer *lst, char *split);
 
+
+// CD Utils
 char	*find_home(t_lexer *lst, char *var); // leak potansiyeli olabilir
 void	del_env_exp(t_lexer *lst, char *var);
+void	set_oldpwd(t_lexer *lst);
 #endif
