@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msamilog <tahasamiloglu@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:21 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/17 14:51:33 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/27 04:28:48 by msamilog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ typedef struct s_lexer
 	int		extraflag;
 	int		equal;
 }				t_lexer;
+
+enum						e_token
+{
+	IN_RED = 1,
+	OUT_RED,
+	HEREDOC,
+	APPEND,
+	PIPE,
+	WORD,
+};
+
+// parser
+
+void init_shell(char *line);
+size_t	count_tokens(char *read_line);
 
 void	ft_echo(t_lexer *lst, char **commands);
 int		fn_echo(t_lexer *lst, char *command);

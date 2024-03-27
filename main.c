@@ -6,7 +6,7 @@
 /*   By: msamilog <tahasamiloglu@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/27 00:14:31 by msamilog         ###   ########.fr       */
+/*   Updated: 2024/03/27 02:06:34 by msamilog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 	free_split(split);
 }
 
+void init_shell(char *line)
+{
+	size_t token_count;
+
+	token_count = count_tokens(line);
+}
+
 int main(int ac, char **av, char **env)
 {
 	(void)ac;
@@ -82,8 +89,15 @@ int main(int ac, char **av, char **env)
     while (1)
     {
         read_line = readline("minimini-->");
+		if (!read_line)
+		{
+			ft_putstr_fd("exit\n", 1);
+			return (0);
+		}
+		add_history(read_line);
+		if (*read_line)
+			init_shell(read_line);
 		ft_deneme(lst, read_line, env);
-		add_history(read_line);	
 		free(read_line);
     }
     return 0;
