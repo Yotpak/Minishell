@@ -44,4 +44,7 @@ int main(int ac, char **av, char **env)
 
 	char *str = ft_exportdup("toprak=toprakbalci");
 	printf("%s\n",str);
+	write(2, "minikshell$: ", 14);
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
 } 

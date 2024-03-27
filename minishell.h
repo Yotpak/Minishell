@@ -6,19 +6,23 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:21 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/17 14:51:33 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/27 04:33:09 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <stdio.h>
 # include <stdlib.h> 
 # include <unistd.h>
 # include "./libft/libft.h"
-# include <readline/readline.h>
-# include <readline/history.h>
+# include <dirent.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <sys/stat.h>
+# include <termios.h>
+# include "readline/readline.h"
+# include "readline/history.h"
 
 // ◦ cd with only a relative or absolute path
 
@@ -67,10 +71,17 @@ void	ft_exportcontrol(char **split, t_lexer *lst);
 char	*dupfunc(char *split, t_lexer *lst);
 char	*ft_exportdup(char *s, t_lexer *lst);
 int		couplecontrol(t_lexer *lst, char *split);
+char	*s1free_strjoin(char *s1, char *s2);
+void	free_split(char **split);
 
 
 // CD Utils
 char	*find_home(t_lexer *lst, char *var); // leak potansiyeli olabilir
 void	del_env_exp(t_lexer *lst, char *var);
 void	set_oldpwd(t_lexer *lst);
+void	cd_error(t_lexer *lst, int flag, char *file);
+void	ex_error(char *error);
+int		check_and_change_dir(const char *filename);
+size_t	last_slash(char *filename);
+
 #endif

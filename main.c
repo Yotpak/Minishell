@@ -6,7 +6,7 @@
 /*   By: tbalci <tbalci@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 18:19:26 by tbalci            #+#    #+#             */
-/*   Updated: 2024/03/09 17:24:44 by tbalci           ###   ########.fr       */
+/*   Updated: 2024/03/27 04:12:45 by tbalci           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	while (split[i])
+	if (split != NULL)
 	{
-		free(split[i]);
-		i++;
+		while (split[i])
+		{
+			free(split[i]);
+			i++;
+		}
+		free(split);
 	}
-	free(split);
 }
 
 void	ft_deneme(t_lexer *lst, char *read_line, char **env)
@@ -48,7 +51,7 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 	char **split;
 	(void)env;
 	split = ft_split(read_line, ' ');
-	if (split[0] == NULL)
+	if (split == NULL)
 		return ;
 	if ((ft_strcmp(split[0], "echo") == 0))
 		ft_echo(lst, split);
@@ -66,7 +69,7 @@ void	ft_deneme(t_lexer *lst, char *read_line, char **env)
 		ft_exit(lst, split);
 	// else
 	// 	ft_execve(split);
-	free_split(split);
+		free_split(split);
 }
 
 int main(int ac, char **av, char **env)
